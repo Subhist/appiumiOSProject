@@ -1,11 +1,15 @@
 package com.google.keep.config;
 
+import com.google.keep.pageobjects.AddNotesPageActions;
+import com.google.keep.pageobjects.AddNotesPageLocators;
 import com.google.keep.pageobjects.HomeScreenActions;
 import com.google.keep.pageobjects.HomeScreenLocators;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
 import java.net.URL;
@@ -21,6 +25,18 @@ public class BaseSetup extends AppiumBaseDriver{
 
     HomeScreenLocators homeScreenLocators;
     HomeScreenActions homeScreenActions;
+    AddNotesPageLocators addNotesPageLocators;
+    AddNotesPageActions addNotesPageActions;
+
+
+
+
+
+
+
+
+
+    SoftAssert softAssert;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
@@ -57,7 +73,18 @@ public class BaseSetup extends AppiumBaseDriver{
 
         DriverConfig.getInstance().getDriver().manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 
+
         this.homeScreenLocators=new HomeScreenLocators(driver);
         this.homeScreenActions=new HomeScreenActions(driver);
+        this.addNotesPageLocators=new AddNotesPageLocators(driver);
+        this.addNotesPageActions=new AddNotesPageActions(driver);
+    }
+
+    @AfterMethod
+    public void tearDown(){
+        softAssert.assertAll();
+        driver.quit();
     }
 }
+
+
