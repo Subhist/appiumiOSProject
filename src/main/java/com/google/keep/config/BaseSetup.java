@@ -23,10 +23,10 @@ public class BaseSetup extends AppiumBaseDriver{
     private String env;
     private String yourlaptopusername;
 
-    HomeScreenLocators homeScreenLocators;
-    HomeScreenActions homeScreenActions;
-    AddNotesPageLocators addNotesPageLocators;
-    AddNotesPageActions addNotesPageActions;
+    public HomeScreenLocators homeScreenLocators;
+    public HomeScreenActions homeScreenActions;
+    public AddNotesPageLocators addNotesPageLocators;
+    public AddNotesPageActions addNotesPageActions;
 
 
 
@@ -36,7 +36,7 @@ public class BaseSetup extends AppiumBaseDriver{
 
 
 
-    SoftAssert softAssert;
+    public static SoftAssert softAssert;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
@@ -74,15 +74,16 @@ public class BaseSetup extends AppiumBaseDriver{
         DriverConfig.getInstance().getDriver().manage().timeouts().implicitlyWait(12, TimeUnit.SECONDS);
 
 
+        this.softAssert=new SoftAssert();
         this.homeScreenLocators=new HomeScreenLocators(driver);
         this.homeScreenActions=new HomeScreenActions(driver);
         this.addNotesPageLocators=new AddNotesPageLocators(driver);
         this.addNotesPageActions=new AddNotesPageActions(driver);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
-        softAssert.assertAll();
+
         driver.quit();
     }
 }

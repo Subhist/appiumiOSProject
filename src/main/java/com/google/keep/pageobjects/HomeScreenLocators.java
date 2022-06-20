@@ -19,6 +19,28 @@ public class HomeScreenLocators {
     @FindBy(name = "Single column view")
     private WebElement singleColumnView;
 
+    @FindBy(name = "ic_lightbulb_outline_grey")
+    private WebElement verifyBulbIconForNoNotes;
+
+    @FindBy(name = "Multi column view")
+    private WebElement multiColumnView;
+
+    public WebElement getMultiColumnView() {
+        return multiColumnView;
+    }
+
+    public void setMultiColumnView(WebElement multiColumnView) {
+        this.multiColumnView = multiColumnView;
+    }
+
+    public WebElement getVerifyBulbIconForNoNotes() {
+        return verifyBulbIconForNoNotes;
+    }
+
+    public void setVerifyBulbIconForNoNotes(WebElement verifyBulbIconForNoNotes) {
+        this.verifyBulbIconForNoNotes = verifyBulbIconForNoNotes;
+    }
+
     public WebElement getCreateNotePlusBtn() {
         return CreateNotePlusBtn;
     }
